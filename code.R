@@ -77,4 +77,14 @@ Eastern_Africa %>% filter(year %in% c(1960, 2010)) %>%
   labs(title = "Population of Eastern Africa in 1960 and 2010", 
        subtitle = "Some countries have doubled their population",
        caption = "gapminder data", y="Country", x="Population in millions")
+
+#Life expectancy change of Eastern Africa countries over time
+Eastern_Africa %>% filter(year %in% c(1960, 2010)) %>% 
+  ggplot(aes(x=life_expectancy, y=fct_reorder(country, life_expectancy))) +
+  geom_col(aes(fill=country)) +
+  theme_bw() + 
+  theme(legend.position = "none") +
+  facet_wrap(~year, scales = "free_x") +
+  labs(title = "Life expectancy change over time in E.Africa", 
+       y="Country", caption = "gapminder data")
   
